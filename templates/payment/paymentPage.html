@@ -70,7 +70,8 @@
                                         <h4 class="card-header">12 Month Plan</h4>
                                         <div class="card-body">
                                             <h3 style="color: black;">Total ₹ {{payment.plan.planAnnualPrice}}</h3>
-                                            <button type="submit" class="btn btn-primary" id="rzp-button1">Procced To Payment with
+                                            <button type="submit" class="btn btn-primary" id="rzp-button1">Procced To
+                                                Payment with
                                                 Razorpay</button>
                                         </div>
                                     </div>
@@ -123,6 +124,27 @@
             "name": "FindMyDSC",
             "description": "Test Transaction",
             "image": "https://example.com/your_logo",
+            config: {
+                display: {
+                    blocks: {
+                        banks: {
+                            name: 'All Payment Options',
+                            instruments: [
+                                {
+                                    method: 'upi'
+                                },
+                                {
+                                    method: 'card'
+                                }
+                            ],
+                        },
+                    },
+                    sequence: ['block.banks'],
+                    preferences: {
+                        show_default_blocks: false,
+                    },
+                },
+            },
             "order_id": "{{payment.order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
             "callback_url": "http://localhost:8000/plan/pay/paymentSuccess/",
             "prefill": {
